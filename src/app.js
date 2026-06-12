@@ -1,25 +1,37 @@
 const express = require('express');
 const app = express();
 
-// GET /user => It checks all the app.xxx("matching routes") functions
-// GET /user => middlewares => request handler
-// actually the request handler function is the one which hits the request and sends back response and all the functions between them are middlewares
-app.use("/", (req,res, next) => {
-    // res.send("Handling /route");
-    next();
+const {adminAuth, userAuth} = require("./middlewares/auth")
+
+app.use("/admin", adminAuth)
+
+// app.get("/admin/getAllData", (req,res) => {
+//     // check if the request is authorized
+//     const token = "sbieufhhfwvuu"
+//     const isAdminAuthorised = token === "xyz";
+
+//     if(isAdminAuthorised){
+//         res.send("All data sent");
+//     }
+//     else{
+//         res.status(401).send("Unauthorized user");
+//     }
+//     // but if we do this we have to do it in every route which will cause code repetition- there comes middleware in the role.
+    
+// })
+
+// what if we use another route => "it will not pass through middleware"
+app.use("/user" , userAuth, (req,res) => {
+    res.send("User is printed");
 })
 
-app.get("/user", (req, res, next) => {
-    console.log("Handling the route user1")
-    next();
-});
-// one more way to create the route handler for the same route. It exactly matches and executes in the same way as previous one.
-app.get("/user", (req, res, next) => {
-    console.log("Handling the route user2")
-    res.send("Response2");
-});
+app.get("/admin/getAllData", (req,res) => {
+    res.send("Data is sent")
+})
 
-
+app.get("/admin/deleteUser", (req,res) => {
+    res.send("Deleted a User")
+})
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000'); 
