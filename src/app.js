@@ -1,40 +1,37 @@
 const express = require('express');
 const app = express();
 
-// This is the root route handler, anything that matches after "/" will trigger this handler. if order of routes is chaged then it will follow the order. so the order is important in express. if we put this route at the end then it will work as a catch all route and will trigger for any route that is not defined above it.
-// app.use("/", (req,res) => {
-//     res.send('Hello World!');
-// })
+app.use("/route", rH1, rH2, [rH3, rH4, rH5], rH6); // placing array individual or in an array will work same(place anyhow work in the order of the handlers). it wiil work on all http route handlers get, post, put, delete etc. it will work on all the routes that start with /route
 
-app.use("/test", (req, res) => { // app.use() will match all the HTTP meethods
-    res.send('Hello from Express!');
+app.use("/user", (req, res, next) => {
+    // route handler
+    console.log("Handling the route user1")
+    // next();
+    // res.send("Response1");
+    next(); // Call next() to pass control to the next route handler
+
+}, (req,res,next) => {
+    //second route handler
+    console.log("Handling the route user2");
+    // res.send("Response2"); // it will not come to this response until next() is called in the first route handler
+    next();
+
+}, (req,res,next) => {
+    
+    console.log("Handling the route user3");
+    // res.send("Response3");
+    next();
+     
+    
+}, (req,res,next) => {
+    
+    console.log("Handling the route user4");
+    // res.send("Response4"); 
+    next(); // if the last handler has next( but no respnse) then it will move to the next route handller if there is nothing in the next i will throw an error cannot/Get. but if there is something next after and there is no response then it will show only loading...
+    
 });
-
-// app.use("/hello", (req, res) => {
-//     res.send('Hello hello hello!');
-// });
-
-
-app.get("/user" , (req,res) => {
-    console.log(req.query); // req.query will give us the query parameters passed in the URL
-    res.send("firstName: Aman, LastName: Choudhary");
-})
-
-// app.get("/user/:userId/:name" , (req,res) => {
-//     console.log(req.params); // req.params will give us the parameters passed in the URL
-//     res.send("firstName: Aman, LastName: Choudhary");
-// })
-
-app.post("/user", (req,res) => {
-    res.send("User created successfully!");
-})
-
-app.delete("/user", (req, res) => {
-    res.send("User deleted successfully!");
-});
-
 
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port 3000'); 
 });
