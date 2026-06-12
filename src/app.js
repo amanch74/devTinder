@@ -14,9 +14,16 @@ app.use("/test", (req, res) => { // app.use() will match all the HTTP meethods
 //     res.send('Hello hello hello!');
 // });
 
+
 app.get("/user" , (req,res) => {
+    console.log(req.query); // req.query will give us the query parameters passed in the URL
     res.send("firstName: Aman, LastName: Choudhary");
 })
+
+// app.get("/user/:userId/:name" , (req,res) => {
+//     console.log(req.params); // req.params will give us the parameters passed in the URL
+//     res.send("firstName: Aman, LastName: Choudhary");
+// })
 
 app.post("/user", (req,res) => {
     res.send("User created successfully!");
@@ -25,6 +32,8 @@ app.post("/user", (req,res) => {
 app.delete("/user", (req, res) => {
     res.send("User deleted successfully!");
 });
+
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
