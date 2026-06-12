@@ -1,38 +1,42 @@
+// Error handling using app.use("/", (err, req, res, next) should be written towards the end.
 const express = require('express');
 const app = express();
 
-const {adminAuth, userAuth} = require("./middlewares/auth")
 
-app.use("/admin", adminAuth)
-
-// app.get("/admin/getAllData", (req,res) => {
-//     // check if the request is authorized
-//     const token = "sbieufhhfwvuu"
-//     const isAdminAuthorised = token === "xyz";
-
-//     if(isAdminAuthorised){
-//         res.send("All data sent");
+//if it is written on top then by checking it, it doesn't have any error so it will send any error
+// app.use("/", (err, req, res, next) => { // it matches all the routes
+//     // log your error
+//     // another way of handling error
+//     if (err) {
+//         res.status(500).send("Something went wrong");
 //     }
-//     else{
-//         res.status(401).send("Unauthorized user");
-//     }
-//     // but if we do this we have to do it in every route which will cause code repetition- there comes middleware in the role.
-    
+
 // })
 
-// what if we use another route => "it will not pass through middleware"
-app.use("/user" , userAuth, (req,res) => {
-    res.send("User is printed");
+app.get("/getUserData", (req, res, next) => {
+
+    try {
+        // Logic of DB call and get user data
+        throw new Error("sdnjnvj");
+        res.send("User data is send");
+    }
+    catch (err) {
+        res.status(500).send("Something big went wrong");
+    }
+    // Logic of DB call and get user data
+    throw new Error("sdnjnvj");
+    res.send("User data is send");
 })
 
-app.get("/admin/getAllData", (req,res) => {
-    res.send("Data is sent")
-})
+// app.use("/", (err, req, res, next) => { // it matches all the routes
+//     // log your error
+//     // another way of handling error
+//     if (err) {
+//         res.status(500).send("Something went wrong");
+//     }
 
-app.get("/admin/deleteUser", (req,res) => {
-    res.send("Deleted a User")
-})
+// })
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000'); 
+    console.log('Server is running on port 3000');
 });
