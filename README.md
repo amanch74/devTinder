@@ -5,3 +5,10 @@
 - first fetch the one user using userEmail = req.body.emailId and model.find({emailId : userEmail})
 - find all the users than
 - which user will it return on model.findOne
+- create a delete user Api
+- difference between PATCH and PUT
+- Api - update a user
+- Explore the mongoose documentation especially for the Models.methods()
+- What are options in a Model.findOneAndUpdate , explore more about it 
+- API - update the user with emailId
+
