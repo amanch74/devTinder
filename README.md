@@ -22,4 +22,5 @@
 - DATA sanitization - ADD API validation for each field
 - Install Validator 
 - Explore validator library function and use validator function for password, email, etc.
+- NEVER TRUST req.body - end user can send anythingssss
 
