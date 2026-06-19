@@ -20,5 +20,6 @@
 - Add timestamps to the schema 
 - Add API level validation on patch request & sign up post API
 - DATA sanitization - ADD API validation for each field
-
+- Install Validator 
+- Explore validator library function and use validator function for password, email, etc.
 
