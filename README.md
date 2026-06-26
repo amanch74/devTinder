@@ -24,3 +24,22 @@
 - Explore validator library function and use validator function for password, email, etc.
 - NEVER TRUST req.body - end user can send anythingssss
 
+
+- Validate data in signup Api
+- Install bcrypt package
+- Create passwordHash using bcrypt.hash & save the user with encrypted password
+- Create login API
+- Compare passwords and throw errors if email or password is invalid
+
+
+- Install a cookie-parser
+- Just send a dummy cookie to the user
+- create a GET/profile API and check if you got the cookie back
+- Install jsonWebToken 
+- In login API, after email and password validation, create a JWT token and send it to the user inside cookies
+- read the cookie in the profile API and find the user logged in user
+- userAuth Middleware
+- Add the userAuth Middleware in profile API and a new sendConnectionRequest
+- set the expiry of JWT token and cookies to 7 days.
+
+- create userSchema method to comparePassword(passwordInputByUser)
