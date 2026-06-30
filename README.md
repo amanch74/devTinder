@@ -43,3 +43,11 @@
 - set the expiry of JWT token and cookies to 7 days.
 
 - create userSchema method to comparePassword(passwordInputByUser)
+
+- Explore tinder APIs
+- create a list all API you can think of in devTinder
+- Group multiple routes under respective routers
+- Read documentation from express.Router();
+- create routes folder for managing auth, profile, request routers
+- create authRouter, profileRouter and requestRouter
+- Import these routers in app.js
